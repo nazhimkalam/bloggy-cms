@@ -9,8 +9,8 @@ const Blog = (props) => {
       <h2>{title}</h2>
       <p>{description}</p>
       <div>
-        <p><small>Created at: {moment(createdAt).fromNow()}</small></p>
-        <p><small>Updated at: {moment(updatedAt).fromNow()}</small></p>
+        <p> <small>Created at: {moment(createdAt).fromNow()}</small> </p>
+        <p> <small>Updated at: {moment(updatedAt).fromNow()}</small> </p>
       </div>
     </Container>
   );
@@ -19,16 +19,16 @@ const Blog = (props) => {
 export default Blog;
 
 const Container = styled.div`
-    margin: 2pc;
-    padding: 1pc;  
-    > p{
-        margin: 1pc 0;
-        text-align: justify;
-    }  
-    > div{
-        p{
-            font-weight: bold;
-            color: #666;
-        }
+  margin: 2pc;
+  padding: 1pc;
+  > p {
+    margin: 1pc 0;
+    text-align: justify;
+  }
+  > div {
+    p {
+      font-weight: bold;
+      color: #666;
     }
+  }
 `;

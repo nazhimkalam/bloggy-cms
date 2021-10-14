@@ -5,16 +5,23 @@ import axios from "axios";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchBlogs = useCallback(async () => {
+    setLoading(true);
     axios
       .get("http://localhost:1337/blogs")
       .then((res) => {
-        setBlogs(res.data);
-        console.log(res.data);
+        const sortedData = res.data.sort((a, b) => {
+          return new Date(b.updatedAt) - new Date(a.updatedAt);
+        });
+        setBlogs(sortedData);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -24,13 +31,22 @@ const Blogs = () => {
 
   return (
     <BlogsWrapper>
-      {blogs.map((blog, key) => (
-        <Blog key={key} id={blog._id} title={blog.title} description={blog.description} updatedAt={blog.updatedAt} createdAt={blog.createdAt} />
-      ))}
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        blogs.map((blog, key) => (
+          <Blog key={key} id={blog._id} title={blog.title} description={blog.description} updatedAt={blog.updatedAt} createdAt={blog.createdAt} />
+        ))
+      )}
     </BlogsWrapper>
   );
 };
 
 export default Blogs;
 
-const BlogsWrapper = styled.div``;
+const BlogsWrapper = styled.div`
+  > p {
+    margin: 1pc 0;
+    text-align: center;
+  }
+`;

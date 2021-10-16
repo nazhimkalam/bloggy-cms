@@ -35,7 +35,14 @@ const Blogs = () => {
         <p>Loading...</p>
       ) : (
         blogs.map((blog, key) => (
-          <Blog key={key} id={blog._id} title={blog.title} description={blog.description} updatedAt={blog.updatedAt} createdAt={blog.createdAt} />
+          <Blog
+            key={key}
+            id={blog._id}
+            title={blog.title}
+            description={blog.description}
+            updatedAt={blog.updatedAt}
+            createdAt={blog.createdAt}
+          />
         ))
       )}
     </BlogsWrapper>

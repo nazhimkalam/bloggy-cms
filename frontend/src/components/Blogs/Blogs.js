@@ -49,4 +49,7 @@ const BlogsWrapper = styled.div`
     margin: 1pc 0;
     text-align: center;
   }
+  @media (min-width: 1500px) {
+    margin: 0 15%;
+  }
 `;
